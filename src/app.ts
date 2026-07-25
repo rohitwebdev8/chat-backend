@@ -11,8 +11,17 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
+// Root welcome endpoint
+app.get('/', (_req: Request, res: Response<ApiResponse>) => {
+  res.status(200).json({
+    success: true,
+    message: 'Chat Notification API is running',
+  });
+});
+
 // Health endpoint
 app.get('/health', getHealth);
+
 
 // Notification API routes
 app.use('/api/notifications', notificationRoutes);
