@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { getHealth } from './controllers/notification.controller.js';
 import notificationRoutes from './routes/notification.routes.js';
+import trackerRoutes from './routes/tracker.routes.js';
 import { errorHandler } from './middleware/error.middleware.js';
 import { ApiResponse } from './types/notification.types.js';
 
@@ -22,9 +23,10 @@ app.get('/', (_req: Request, res: Response<ApiResponse>) => {
 // Health endpoint
 app.get('/health', getHealth);
 
-
-// Notification API routes
+// API routes
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/tracker', trackerRoutes);
+
 
 // 404 Handler
 app.use((_req: Request, res: Response<ApiResponse>) => {
